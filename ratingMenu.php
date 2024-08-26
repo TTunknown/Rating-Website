@@ -1,4 +1,6 @@
 <?php
+$review_message = '';
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Get the submitted data
     $emoji_rating = $_POST['emoji_rating'];
@@ -10,16 +12,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Signature Check
     $file_content = file_get_contents('dataStorage.txt');
     if (strpos($file_content, $signature) !== false) {
-        echo "This signature already exists. Please choose a unique signature.";
+        $review_message = "This signature already exists. Please choose a unique signature.";
     } else {
         // Review String
         $review = "Emoji Rating: $emoji_rating | Feeling: $feeling | Signature: $signature | Gender: $gender | Date/Time: $date_time\n";
 
-        // Reviews Written
+        // Save the review
         file_put_contents('dataStorage.txt', $review, FILE_APPEND);
 
-        // Confirmation
-        echo "Your review has been submitted successfully!";
+        // Confirmation Message
+        $review_message = "Your review has been submitted successfully!";
     }
 }
 ?>
@@ -38,21 +40,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <form action="ratingMenu.php" method="POST">
             <!-- Rating -->
             <label for="emoji_rating">Rate Us:</label>
-            <div>
+            <div class="emoji-rating">
                 <input type="radio" id="bad" name="emoji_rating" value="Bad" required>
-                <label for="bad"><img src="bad_emoji.png" alt="Bad" width="50" height="50"></label>
+                <label for="bad">Bad</label>
 
                 <input type="radio" id="not_good" name="emoji_rating" value="Not Good">
-                <label for="not_good"><img src="not_good_emoji.png" alt="Not Good" width="50" height="50"></label>
+                <label for="not_good">Not Good</label>
 
                 <input type="radio" id="neutral" name="emoji_rating" value="Neutral">
-                <label for="neutral"><img src="neutral_emoji.png" alt="Neutral" width="50" height="50"></label>
+                <label for="neutral">Neutral</label>
 
                 <input type="radio" id="good" name="emoji_rating" value="Good">
-                <label for="good"><img src="good_emoji.png" alt="Good" width="50" height="50"></label>
+                <label for="good">Good</label>
 
                 <input type="radio" id="great" name="emoji_rating" value="Great">
-                <label for="great"><img src="great_emoji.png" alt="Great" width="50" height="50"></label>
+                <label for="great">Great</label>
             </div>
 
             <!-- Feeling -->
@@ -84,6 +86,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             <input type="submit" value="Submit">
         </form>
+
+        <!-- Display the review message in a separate container -->
+        <?php if (!empty($review_message)) : ?>
+            <div class="review-message">
+                <?php echo $review_message; ?>
+            </div>
+        <?php endif; ?>
 
         <form action="login.php" method="GET" style="margin-top: 20px;">
             <button type="submit">Login</button>

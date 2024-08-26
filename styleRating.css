@@ -1,4 +1,3 @@
-
 * {
     margin: 0;
     padding: 0;
@@ -22,6 +21,8 @@ html, body {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
 }
 
 form {
@@ -29,7 +30,6 @@ form {
     flex-direction: column;
     gap: 16px;
     width: 100%;
-    max-width: 500px;
 }
 
 label {
@@ -65,3 +65,24 @@ img {
 button {
     padding: 10px 20px;
 }
+
+.review-message {
+    margin-top: 20px;
+    background-color: #dff0d8;
+    color: #3c763d;
+    padding: 15px;
+    border-radius: 8px;
+    width: 100%;
+    text-align: center;
+}
+
+.emoji-rating {
+    display: flex;
+    gap: 20px; /* space between each radio button and its label */
+}
+
+.emoji-rating label {
+    display: inline-block;
+    cursor: pointer;
+}
+

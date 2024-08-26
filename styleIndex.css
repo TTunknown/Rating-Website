@@ -1,13 +1,18 @@
 
-body {
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #2c2c2c;
-    color: teal;
+    background-color: #f0f0f0;
+    color: #333333;
 }
 
 .container {
@@ -17,8 +22,15 @@ body {
 .welcome-text {
     font-size: 48px;
     margin-bottom: 20px;
+    color: #007bff;
 }
 
 .redirect-text {
     font-size: 24px;
+    color: #333333;
+}
+
+#countdown {
+    font-weight: bold;
+    color: #d9534f;
 }
